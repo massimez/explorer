@@ -2,6 +2,10 @@
 import { computed, ref, toRefs } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import { useFoldersStore } from "@/stores/folders.js";
+import file from "../assets/file.svg?url";
+import folder from "../assets/folder.svg?url";
+import remove from "../assets/delete.svg?url";
+import edit from "../assets/edit.svg?url";
 
 const storeFolders = useFoldersStore();
 const nodeInfoProps = defineProps({
@@ -41,8 +45,8 @@ const onDelete = (id: number | string) => {
   <li class="node-tree">
     <div class="item">
       <img
-        :src="`${nodeInfo.type === 'file' ? 'file' : 'folder'}.svg`"
-        :alt="nodeInfo.type === 'file' ? 'file' : 'folder'"
+        :src="`${nodeInfo.type === 'file' ? file : folder}`"
+        :alt="nodeInfo.type === 'file' ? file : folder"
       />
       <div>
         <input
@@ -58,10 +62,10 @@ const onDelete = (id: number | string) => {
 
       <div class="btn-control">
         <button class="btn" @click="onEdit()">
-          <img src="edit.svg" alt="button-edit" />
+          <img :src="edit" alt="button-edit" />
         </button>
         <button class="btn" @click="onDelete(nodeInfo.id)">
-          <img src="delete.svg" alt="button-delete" />
+          <img :src="remove" alt="button-delete" />
         </button>
       </div>
     </div>
